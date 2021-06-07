@@ -10,7 +10,7 @@
            nav{
             width: 100%;
             top: 0;
-            position: fixed;
+            /* position: fixed; */
             height: 8vh;
             background-color: cadetblue;
         }
@@ -37,10 +37,14 @@
             margin: auto;
         }
 
-        #Showitem>div {
+        #Showitem>div{
             border: 1px solid darkblue;
             padding: 0% 25%;
-            background-color: darkgray;
+            background-color:coral;
+            border-radius: 10px;
+        }
+        #Showitem>div>p{
+            color:darkblue;
         }
 
         .mtbtn{
@@ -53,11 +57,23 @@
             font-weight: bolder;
             border-radius: 5px;
         }
+
+        #heading{
+            margin-top: 50px ;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Welcome to your Cart</h1>
+    <nav>
+        <ul>
+            <li><a href="/Coding/eva/login.html">Login</a></li>
+            <li><a href="/Coding/eva/signup.html">SignUp</a></li>
+            <li><a href="/Coding/eva/menu.html">Menu</a></li>
+        </ul>
+    </nav>
+    <h1 id="heading">Welcome to your Cart</h1>
     <button class="mtbtn" onclick="SubmitOrder()">Submit Order</button>
     <div id="Showitem"></div>
 </body>
