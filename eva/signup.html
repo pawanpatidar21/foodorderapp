@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+
+nav{
+            width: 100%;
+            top: 0;
+            position: fixed;
+            height: 8vh;
+            background-color: cadetblue;
+        }
+        nav ul{
+            display: flex;
+           list-style-type: none;
+           margin-left: 80%;
+        }
+        nav ul li a {
+            text-decoration: none;
+           color: black;
+        }
+        nav ul li{
+            margin-left: 20px;
+            
+        }
+        #parent{
+            margin: 10% 45%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/Coding/eva/login.html">Login</a></li>
+            <li><a href="/Coding/eva/signup.html">SignUp</a></li>
+            <li><a href="/Coding/eva/menu.html">Menu</a></li>
+        </ul>
+       
+    </nav>
+<div id="parent">
+    <form id="myForm">
+    <label for="">Name</label>
+    <input type="text" id="name">
+    <label for="">Contact</label>
+    <input type="number" id="mobile">
+    <label for="">Email</label>
+    <input type="text" id="email">
+    <label for="">Password</label>
+    <input type="password" id="password">
+    <button onclick="SignupFunc(event)">Signup</button>
+    </form>
+</div>
+</body>
+<script>
+    let users = JSON.parse(localStorage.getItem('users'))||[]
+    function SignupFunc(event){
+        event.preventDefault()
+        let form = document.getElementById('myForm')
+        let obj = {
+            name:form.name.value,
+            mobile:form.mobile.value,
+            email:form.email.value,
+            password:form.password.value,
+        }
+        console.log(obj)
+        if(obj.name == ""||obj.mobile == ""||obj.email == ""||obj.password == ""){
+            alert("Please fill all the credential")
+        }else{
+            users.push(obj)
+            localStorage.setItem('users',JSON.stringify(users))
+        }
+    }
+</script>
+</html>

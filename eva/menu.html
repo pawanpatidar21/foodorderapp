@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+       nav{
+            width: 100%;
+            top: 0;
+            position: fixed;
+            height: 8vh;
+            background-color: cadetblue;
+        }
+        nav ul{
+            display: flex;
+           list-style-type: none;
+           margin-left: 80%;
+        }
+        nav ul li a {
+            text-decoration: none;
+           color: black;
+        }
+        nav ul li{
+            margin-left: 20px;
+            
+        }
+        #showmenu{
+            display: grid;
+            width: 90%;
+            grid-template-columns: 30% 30% 30%;
+            grid-template-rows: 60vh 60vh;
+            row-gap: 5%;
+            column-gap: 5%;
+            margin: auto;
+        }
+        #showmenu>div{
+            border: 1px solid darkblue;
+            padding: 0% 25%;
+            background-color:coral;
+            border-radius: 10px;
+        }
+        #showmenu>div>p{
+            color:darkblue;
+        }
+        .mtbtn{
+            margin: 2% 45%;
+            width: 150px;
+            height: 7vh;
+            border:1px darkred solid;
+            color: darkred;
+            font-size: 18px;
+            font-weight: bolder;
+            border-radius: 5px;
+        }
+        .addbtn{
+          
+            width: 150px;
+            height: 5vh;
+            border:1px rgb(139, 16, 0) solid;
+            color: rgb(139, 16, 0);
+            font-size: 14px;
+            font-weight: bolder;
+            border-radius: 5px;
+        }
+
+        #heading{
+            margin-top: 6% ;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/Coding/eva/login.html">Login</a></li>
+            <li><a href="/Coding/eva/signup.html">SignUp</a></li>
+            <li><a href="/Coding/eva/menu.html">Menu</a></li>
+        </ul>
+       
+    </nav>
+    <h1 id="heading">Please choose your menu</h1>
+    <button class="mtbtn" onclick="GotoCart()">Go to Cart</button>
+    <div id="showmenu"></div>
+</body>
+<script>
+     let CardItem = JSON.parse(localStorage.getItem('CardItem')) || []
+    let AllMenu = [
+        {
+            DishName:'Samoosa',
+            img:'https://static.toiimg.com/thumb/61050397.cms?width=1200&height=900',
+            Price:20,
+            Timeprepare:new Date().getHours(),
+            description:'That is nice test',
+
+        },
+        {
+            DishName:'Burger',
+            img:'https://b.zmtcdn.com/data/pictures/chains/0/19094840/71be1a60e5e794c02b14efd595987e6e.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*',
+            Price:30,
+            Timeprepare:new Date().getHours(),
+            description:'best one',
+
+        },
+        {
+            DishName:'Panipuri',
+            img:'https://static.toiimg.com/thumb/61048461.cms?imgsize=1981854&width=800&height=800',
+            Price:10,
+            Timeprepare:new Date().getHours(),
+            description:'crunchy',
+
+        },
+        {
+            DishName:'Ice-cream',
+            img:'https://cdn.britannica.com/50/80550-050-5D392AC7/Scoops-kinds-ice-cream.jpg',
+            Price:50,
+            Timeprepare:new Date().getHours(),
+            description:'venila is nice one',
+
+        },
+    ]
+    console.log(AllMenu)
+
+   
+    if(localStorage.getItem('AllMenu') == null){
+        localStorage.setItem('AllMenu',JSON.stringify(AllMenu))
+    }
+   
+   function MyDishesFunc(){
+       let show = document.getElementById('showmenu')
+
+       AllMenu.forEach(el => {
+           console.log(el)
+           let div = document.createElement('div')
+           let para1 = document.createElement('p')
+           let para2 = document.createElement('p')
+           let para3 = document.createElement('p')
+           let para4 = document.createElement('p')
+           let img = document.createElement('img')
+           let btn = document.createElement('button')
+           btn.textContent = 'Add To Cart'
+           btn.setAttribute('class',"addbtn")
+           btn.onclick = function(){
+               AddItem(el)
+           }
+           img.style.width = '150px'
+           img.src = el.img
+           para1.innerHTML = `Name:${el.DishName}`
+           para2.innerHTML = `Price:${el.Price}`
+           para3.innerHTML = `Description:${el.description}`
+           para4.innerHTML = `TimePrepare:${el.Timeprepare}`
+
+           div.append(para1,img,para2,para4,para3,btn)
+           show.appendChild(div)
+       });
+
+   }
+   MyDishesFunc()
+
+   function AddItem(el){
+       console.log(el)
+       CardItem.push(el)
+       localStorage.setItem('CardItem',JSON.stringify(CardItem))
+   }
+
+   function GotoCart(){
+       window.location.href = '/Coding/eva/Cart.html'
+   }
+</script>
+</html>

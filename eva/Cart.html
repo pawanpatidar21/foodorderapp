@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+           nav{
+            width: 100%;
+            top: 0;
+            position: fixed;
+            height: 8vh;
+            background-color: cadetblue;
+        }
+        nav ul{
+            display: flex;
+           list-style-type: none;
+           margin-left: 80%;
+        }
+        nav ul li a {
+            text-decoration: none;
+           color: black;
+        }
+        nav ul li{
+            margin-left: 20px;
+            
+        }
+        #Showitem {
+            display: grid;
+            width: 90%;
+            grid-template-columns: 30% 30% 30%;
+            grid-template-rows: 50vh 50vh;
+            row-gap: 5%;
+            column-gap: 5%;
+            margin: auto;
+        }
+
+        #Showitem>div {
+            border: 1px solid darkblue;
+            padding: 0% 25%;
+            background-color: darkgray;
+        }
+
+        .mtbtn{
+            margin: 2% 45%;
+            width: 150px;
+            height: 7vh;
+            border:1px darkred solid;
+            color: darkred;
+            font-size: 18px;
+            font-weight: bolder;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to your Cart</h1>
+    <button class="mtbtn" onclick="SubmitOrder()">Submit Order</button>
+    <div id="Showitem"></div>
+</body>
+<script>
+    let CardItem = JSON.parse(localStorage.getItem('CardItem'))
+    let Showitem = document.getElementById('Showitem')
+    CardItem.forEach(el => {
+        console.log(el)
+        let div = document.createElement('div')
+        let para1 = document.createElement('p')
+        let para2 = document.createElement('p')
+        let para3 = document.createElement('p')
+        let para4 = document.createElement('p')
+        let img = document.createElement('img')
+
+        img.style.width = '150px'
+        img.src = el.img
+        para1.innerHTML = `Name:${el.DishName}`
+        para2.innerHTML = `Name:${el.Price}`
+        para3.innerHTML = `Name:${el.description}`
+        para4.innerHTML = `Name:${el.Timeprepare}`
+
+        div.append(para1, img, para2, para4, para3)
+        Showitem.appendChild(div)
+    });
+
+    function SubmitOrder() {
+        alert('Your order is accepted')
+        setTimeout(() => {
+            alert('Your order is being cooked')
+            setTimeout(() => {
+                alert('Your order is ready')
+                setTimeout(() => {
+                    alert('Order out for delivery')
+                    setTimeout(() => {
+                        alert('Order delivered')
+                    }, 12000);
+
+                }, 10000);
+
+            }, 8000);
+
+        }, 3000);
+     
+    }
+
+
+</script>
+
+</html>
